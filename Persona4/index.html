@@ -17,6 +17,14 @@
 
     <main>
 
+                <!-- ===== W5: RINGKASAN (diisi otomatis oleh hitungRingkasan()) ===== -->
+        <section id="ringkasan">
+            <h2>Ringkasan</h2>
+            <p>Total Pemasukan: <strong id="total-pemasukan">Rp 0</strong></p>
+            <p>Total Pengeluaran: <strong id="total-pengeluaran">Rp 0</strong></p>
+            <p>Saldo: <strong id="saldo">Rp 0</strong></p>
+        </section>
+
         <section id="bagian-form">
 
         <h2>Tambah Transaksi</h2>
@@ -53,6 +61,8 @@
             <!-- Catatan: boleh dikosongkan -->
             <label for="catatan">Catatan (opsional)</label>
             <input type="text" id="catatan" placeholder="contoh: beli sayur">
+
+            <p id="pesan-error" class="error"></p>
 
             <button type="submit">Simpan</button>
         </form>

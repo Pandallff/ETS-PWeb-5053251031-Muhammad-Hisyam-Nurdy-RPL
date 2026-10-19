@@ -1,0 +1,460 @@
+/* ==========================================================
+   style.css - Catatan Keuangan Amplop (persona: ibu rumah tangga)
+   Tema hijau kalem, mobile-first, tombol dan input besar
+   ========================================================== */
+
+/* Font Inter dari Google Fonts, kalau gagal dimuat dipakai font bawaan perangkat */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* ---------- 1. Warna dan ukuran yang dipakai berulang ---------- */
+:root {
+  --latar: #f7f5ec;          /* krem lembut untuk latar halaman */
+  --kartu: #ffffff;          /* putih untuk kotak isi */
+  --hijau-tua: #3f5a47;      /* teks judul, tombol utama */
+  --hijau-sage: #7a9a82;     /* warna tema utama */
+  --hijau-mint: #e3eee4;     /* latar lembut hijau */
+  --garis: #c9d8cb;          /* batas kotak dan input */
+  --teks: #2c3a30;           /* teks utama (hijau sangat gelap) */
+  --teks-redup: #667568;     /* teks pendukung */
+
+  --masuk: #4f9a63;          /* pemasukan: hijau sedikit lebih terang */
+  --masuk-latar: #eaf5ec;
+  --masuk-teks: #2f6b3f;
+
+  --keluar: #c8674f;         /* pengeluaran: merah bata kalem / coral */
+  --keluar-latar: #fbeeea;
+  --keluar-teks: #a5472f;
+
+  --radius: 16px;
+  --radius-kecil: 12px;
+  --bayangan: 0 2px 10px rgba(63, 90, 71, 0.08);
+}
+
+/* ---------- 2. Pengaturan dasar ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 17px; /* sedikit lebih besar dari standar supaya nyaman dibaca */
+}
+
+body {
+  margin: 0;
+  background: var(--latar);
+  color: var(--teks);
+  font-family: "Inter", "Roboto", "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  color: var(--hijau-tua);
+  line-height: 1.3;
+  margin: 0 0 16px;
+}
+
+h1 { font-size: 1.5rem; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1.05rem; margin-top: 24px; }
+
+/* ---------- 3. Header ---------- */
+header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--hijau-sage);
+  padding: 20px 16px;
+  border-radius: 0 0 24px 24px;
+}
+
+header h1 {
+  color: #ffffff;
+  margin: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  font-size: 1.7rem;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ---------- 4. Susunan halaman utama ---------- */
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Setiap bagian tampil sebagai kotak putih yang membulat */
+main > section {
+  background: var(--kartu);
+  border: 1px solid var(--garis);
+  border-radius: var(--radius);
+  box-shadow: var(--bayangan);
+  padding: 20px 16px;
+}
+
+/* ---------- 5. Ringkasan ---------- */
+/* Versi sederhana: tiga paragraf berisi label dan angka */
+#ringkasan > p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 10px;
+  padding: 14px 16px;
+  background: var(--hijau-mint);
+  border-radius: var(--radius-kecil);
+}
+
+#ringkasan > p:last-child {
+  margin-bottom: 0;
+}
+
+#ringkasan strong {
+  font-size: 1.15rem;
+  white-space: nowrap;
+}
+
+/* Warna angka: pemasukan hijau, pengeluaran coral */
+#total-pemasukan { color: var(--masuk-teks); }
+#total-pengeluaran { color: var(--keluar-teks); }
+#saldo { color: var(--hijau-tua); font-size: 1.3rem; }
+
+/* Versi kartu (kalau memakai .kotak-ringkasan dan .kartu) */
+.kotak-ringkasan {
+  display: grid;
+  gap: 10px;
+}
+
+.kartu {
+  background: var(--hijau-mint);
+  border-radius: var(--radius-kecil);
+  padding: 14px 16px;
+}
+
+.kartu p {
+  margin: 0 0 4px;
+  color: var(--teks-redup);
+  font-size: 0.9rem;
+}
+
+.kartu strong {
+  font-size: 1.25rem;
+}
+
+/* ---------- 6. Form ---------- */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  display: block;
+  margin: 14px 0 6px;
+  font-weight: 600;
+  color: var(--hijau-tua);
+}
+
+label:first-of-type {
+  margin-top: 0;
+}
+
+/* Input dan pilihan dibuat besar dengan batas yang jelas */
+input,
+select {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 1rem; /* minimal 16px supaya HP tidak memperbesar layar otomatis */
+  color: var(--teks);
+  background: #fdfdfb;
+  border: 2px solid var(--garis);
+  border-radius: var(--radius-kecil);
+}
+
+input::placeholder {
+  color: #93a196;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--hijau-sage);
+  box-shadow: 0 0 0 4px rgba(122, 154, 130, 0.25);
+}
+
+/* ---------- 7. Tombol ---------- */
+button {
+  min-height: 52px;
+  padding: 12px 20px;
+  font-family: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--hijau-tua);
+  border: none;
+  border-radius: var(--radius-kecil);
+  cursor: pointer;
+}
+
+button:hover {
+  background: #34493b;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--hijau-sage);
+  outline-offset: 2px;
+}
+
+/* Tombol di dalam form dan di bagian amplop dibuat selebar kotak */
+form button,
+#tombol-simpan-amplop,
+#tombol-ekspor {
+  width: 100%;
+  margin-top: 18px;
+}
+
+/* ---------- 8. Pesan (error dan info) ---------- */
+.pesan {
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border-radius: var(--radius-kecil);
+  background: var(--hijau-mint);
+  color: var(--hijau-tua);
+  font-size: 0.95rem;
+}
+
+.error {
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  border-radius: var(--radius-kecil);
+  background: var(--keluar-latar);
+  border: 1px solid var(--keluar);
+  color: var(--keluar-teks);
+  font-size: 0.95rem;
+}
+
+/* Kalau pesan kosong, kotaknya disembunyikan */
+.pesan:empty,
+.error:empty {
+  display: none;
+}
+
+/* ---------- 9. Daftar transaksi ---------- */
+#pesan-kosong {
+  margin: 0;
+  padding: 20px 12px;
+  text-align: center;
+  color: var(--teks-redup);
+  background: var(--latar);
+  border: 2px dashed var(--garis);
+  border-radius: var(--radius-kecil);
+}
+
+#daftar-transaksi {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+#daftar-transaksi li {
+  display: flex;
+  flex-direction: column; /* di HP: teks di atas, tombol di bawah */
+  gap: 12px;
+  padding: 14px 14px 14px 16px;
+  border-radius: var(--radius-kecil);
+  border-left: 8px solid var(--garis);
+  word-break: break-word;
+}
+
+/* Penanda warna: pemasukan hijau, pengeluaran coral */
+#daftar-transaksi li.pemasukan {
+  background: var(--masuk-latar);
+  border-left-color: var(--masuk);
+  color: var(--masuk-teks);
+}
+
+#daftar-transaksi li.pengeluaran {
+  background: var(--keluar-latar);
+  border-left-color: var(--keluar);
+  color: var(--keluar-teks);
+}
+
+#daftar-transaksi li span {
+  font-weight: 500;
+}
+
+/* Tombol Hapus: garis coral, tetap cukup besar untuk jari */
+#daftar-transaksi li button {
+  width: 100%;
+  min-height: 46px;
+  background: #ffffff;
+  color: var(--keluar-teks);
+  border: 2px solid var(--keluar);
+}
+
+#daftar-transaksi li button:hover {
+  background: var(--keluar);
+  color: #ffffff;
+}
+
+/* ---------- 10. Bagian amplop (fitur khas) ---------- */
+#daftar-amplop {
+  display: grid;
+  gap: 12px;
+}
+
+/* Satu amplop. Beri class "amplop" pada tiap kartu di JavaScript */
+.amplop {
+  padding: 16px;
+  background: var(--hijau-mint);
+  border: 2px solid var(--garis);
+  border-radius: var(--radius-kecil);
+}
+
+.amplop h3,
+.amplop h4 {
+  margin: 0 0 6px;
+  font-size: 1.05rem;
+  color: var(--hijau-tua);
+}
+
+.amplop p {
+  margin: 2px 0;
+}
+
+/* Amplop yang sudah habis: beri class "habis" di JavaScript */
+.amplop.habis {
+  background: var(--keluar-latar);
+  border-color: var(--keluar);
+  color: var(--keluar-teks);
+}
+
+.amplop .tanda-habis,
+.tanda-habis {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 4px 12px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--keluar);
+  border-radius: 999px;
+}
+
+/* Pengaturan nominal amplop: tiap baris berisi label dan input */
+#pengaturan-amplop {
+  display: grid;
+  gap: 4px;
+}
+
+#pengaturan-amplop > div {
+  margin-bottom: 8px;
+}
+
+/* ---------- 11. Filter dan backup (bonus) ---------- */
+.filter {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+input[type="file"] {
+  margin-top: 12px;
+  padding: 10px;
+  min-height: 0;
+  background: var(--latar);
+  border-style: dashed;
+}
+
+/* ---------- 12. Footer ---------- */
+footer {
+  text-align: center;
+  padding: 20px 16px 28px;
+  color: var(--teks-redup);
+  font-size: 0.85rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* ---------- 13. Layar lebih lebar (tablet dan laptop) ---------- */
+@media (min-width: 640px) {
+  html {
+    font-size: 18px;
+  }
+
+  header {
+    justify-content: center;
+    padding: 24px;
+  }
+
+  main > section {
+    padding: 24px;
+  }
+
+  .kotak-ringkasan {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #daftar-amplop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filter {
+    flex-direction: row;
+  }
+
+  /* Di layar lebar, teks dan tombol Hapus sejajar satu baris */
+  #daftar-transaksi li {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #daftar-transaksi li button {
+    width: auto;
+    min-width: 100px;
+  }
+}
+
+/* ---------- 14. Layar sangat kecil (HP 360px) ---------- */
+@media (max-width: 380px) {
+  html {
+    font-size: 16px;
+  }
+
+  main {
+    padding: 16px 12px 8px;
+  }
+
+  main > section {
+    padding: 16px 12px;
+  }
+
+  #ringkasan > p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+}

@@ -1,1 +1,2 @@
 # ETS-PWeb-5053251031-Muhammad-Hisyam-Nurdy-RPL
+Aplikasi ini membantu seorang Ibu Rumah Tangga yang kesehariannya tidak lepas dari transaksi. Ibu Rumah Tangga dapat mengatur seluruh pemasukannya akan di masukkan ke kategori yang ia mau agar uang dapat dijatah sesuai kebutuhan bulanan dan tidak berkurang tanpa pengetahuan. Dengan menggunakan aplikasi ini Keuangan Rumah tangga tidak perlu lagi dicatat secara manual, cukup memasukkan tanggal, nominal masuk/keluar, dan kategori/amplop yang diinginkan.

@@ -637,3 +637,164 @@ footer p {
     padding: 6px 16px 10px;
   }
 }
+
+
+/* ---------- 16. Amplop, edit, filter, dan backup ---------- */
+
+/* Kartu amplop: nama di kiri, tanda HABIS di kanan */
+.amplop-atas {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.amplop .sisa {
+  font-weight: 700;
+}
+
+/* Pengaturan nominal amplop: dua kolom */
+#pengaturan-amplop {
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 12px;
+}
+
+#pengaturan-amplop > div {
+  margin-bottom: 0;
+}
+
+#pengaturan-amplop label {
+  margin: 0 0 4px;
+  font-size: 0.9rem;
+}
+
+/* Dua tombol (Edit dan Hapus) berdampingan di tiap transaksi */
+.aksi {
+  display: flex;
+  gap: 8px;
+}
+
+.aksi button {
+  flex: 1;
+}
+
+#daftar-transaksi li button.tombol-edit {
+  color: var(--hijau-tua);
+  border-color: var(--hijau-sage);
+}
+
+#daftar-transaksi li button.tombol-edit:hover {
+  background: var(--hijau-sage);
+  color: #ffffff;
+}
+
+/* Tombol Batal saat mengedit */
+.tombol-batal {
+  background: #ffffff;
+  color: var(--hijau-tua);
+  border: 2px solid var(--hijau-sage);
+}
+
+.tombol-batal:hover {
+  background: var(--hijau-mint);
+}
+
+form .tombol-batal {
+  margin-top: 8px;
+}
+
+/* Filter: tiga kolom isian */
+.filter {
+  display: grid;
+  gap: 10px;
+}
+
+@media (min-width: 640px) {
+  .filter {
+    grid-template-columns: 1fr 1fr 1.4fr;
+  }
+
+  #daftar-transaksi li .aksi {
+    flex: none;
+  }
+}
+
+/* Backup: tombol Ekspor dan Impor berdampingan */
+.backup {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.backup #tombol-ekspor {
+  flex: 1;
+  width: auto;
+  margin-top: 0;
+  min-height: 46px;
+}
+
+.tombol-impor {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  min-height: 46px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--hijau-tua);
+  background: #ffffff;
+  border: 2px solid var(--hijau-sage);
+  border-radius: var(--radius-kecil);
+  cursor: pointer;
+}
+
+.tombol-impor:hover {
+  background: var(--hijau-mint);
+}
+
+/* Desktop: rapatkan bagian-bagian baru supaya tetap muat satu layar */
+@media (min-width: 1024px) and (min-height: 640px) {
+  #bagian-amplop h3 {
+    margin: 12px 0 8px;
+  }
+
+  #tombol-simpan-amplop {
+    margin-top: 12px;
+    min-height: 44px;
+  }
+
+  .amplop {
+    padding: 8px 12px;
+  }
+
+  .amplop h4 {
+    margin: 0;
+  }
+
+  .filter input,
+  .filter select {
+    min-height: 40px;
+  }
+
+  .backup {
+    margin-top: 10px;
+    flex-shrink: 0;
+  }
+
+  .backup #tombol-ekspor,
+  .tombol-impor {
+    min-height: 40px;
+  }
+
+  #daftar-transaksi li {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  #daftar-transaksi li button {
+    min-height: 38px;
+    min-width: 70px;
+  }
+}

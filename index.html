@@ -4,89 +4,132 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Catatan Keuangan Amplop</title>
- 
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
- 
-    <!-- ===== HEADER: logo + judul aplikasi ===== -->
-    <header>
-        <span class="logo">💰</span>
-        <h1>Catatan Keuangan Amplop</h1>
-    </header>
 
-    <main>
+  <!-- ===== HEADER: logo + judul aplikasi ===== -->
+  <header>
+    <span class="logo">💰</span>
+    <h1>Catatan Keuangan Amplop</h1>
+  </header>
 
-                <!-- ===== W5: RINGKASAN (diisi otomatis oleh hitungRingkasan()) ===== -->
-        <section id="ringkasan">
-            <h2>Ringkasan</h2>
-            <p>Total Pemasukan: <strong id="total-pemasukan">Rp 0</strong></p>
-            <p>Total Pengeluaran: <strong id="total-pengeluaran">Rp 0</strong></p>
-            <p>Saldo: <strong id="saldo">Rp 0</strong></p>
-        </section>
+  <main>
 
-        <section id="bagian-form">
+    <!-- ===== W5: RINGKASAN (diisi otomatis oleh hitungRingkasan()) ===== -->
+    <section id="ringkasan">
+      <h2>Ringkasan</h2>
+      <p>Total Pemasukan: <strong id="total-pemasukan">Rp 0</strong></p>
+      <p>Total Pengeluaran: <strong id="total-pengeluaran">Rp 0</strong></p>
+      <p>Saldo: <strong id="saldo">Rp 0</strong></p>
+    </section>
 
-        <h2>Tambah Transaksi</h2>
+    <!-- ===== FITUR KHAS: AMPLOP (diisi oleh renderAmplop() dan renderPengaturanAmplop()) ===== -->
+    <section id="bagian-amplop">
+      <h2>Amplop Bulan Ini</h2>
 
-        <form id="form-transaksi">
+      <!-- Kartu tiap amplop: jatah, terpakai, sisa, dan tanda HABIS -->
+      <div id="daftar-amplop"></div>
 
-             <!-- Tanggal transaksi -->
-            <label for="tanggal">Tanggal</label>
-            <input type="date" id="tanggal">
+      <!-- Kolom untuk mengatur nominal tiap amplop (dibuat oleh JavaScript) -->
+      <h3>Atur Nominal Amplop</h3>
+      <div id="pengaturan-amplop"></div>
+      <button type="button" id="tombol-simpan-amplop">Simpan Amplop</button>
+      <p id="pesan-amplop" class="pesan"></p>
+    </section>
 
-             <!-- Jenis: pemasukan atau pengeluaran -->
-            <label for="jenis">Jenis</label>
-            <select id="jenis">
-                <option value="pengeluaran">Pengeluaran</option>
-                <option value="pemasukan">Pemasukan</option>
-            </select>
+    <!-- ===== W1 + W6: FORM TAMBAH TRANSAKSI (juga dipakai untuk bonus edit) ===== -->
+    <section id="bagian-form">
 
-            <!-- Kategori: pilihan tetap (minimal 4) -->
-            <label for="kategori">Kategori</label>
+      <h2>Tambah Transaksi</h2>
 
-            <select id="kategori">
-                <option value="Uang Belanja">Uang Belanja</option>
-                <option value="Belanja Dapur">Belanja Dapur</option>
-                <option value="Listrik & Air">Listrik &amp; Air</option>
-                <option value="Transport">Transport</option>
-                <option value="Sekolah Anak">Sekolah Anak</option>
-                <option value="Lainnya">Lainnya</option>
-            </select>
+      <form id="form-transaksi">
 
-            <!-- Nominal: angka -->
-            <label for="nominal">Nominal (Rp)</label>
-            <input type="number" id="nominal" placeholder="contoh: 25000">
+        <!-- Tanggal transaksi -->
+        <label for="tanggal">Tanggal</label>
+        <input type="date" id="tanggal">
 
-            <!-- Catatan: boleh dikosongkan -->
-            <label for="catatan">Catatan (opsional)</label>
-            <input type="text" id="catatan" placeholder="contoh: beli sayur">
+        <!-- Jenis: pemasukan atau pengeluaran -->
+        <label for="jenis">Jenis</label>
+        <select id="jenis">
+          <option value="pengeluaran">Pengeluaran</option>
+          <option value="pemasukan">Pemasukan</option>
+        </select>
 
-            <p id="pesan-error" class="error"></p>
+        <!-- Kategori: pilihan tetap. Empat nama pertama sama dengan nama amplop -->
+        <label for="kategori">Kategori</label>
+        <select id="kategori">
+          <option value="Belanja Dapur">Belanja Dapur</option>
+          <option value="Listrik & Air">Listrik &amp; Air</option>
+          <option value="Transport">Transport</option>
+          <option value="Sekolah Anak">Sekolah Anak</option>
+          <option value="Lainnya">Lainnya</option>
+          <option value="Uang Belanja">Uang Belanja</option>
+        </select>
 
-            <button type="submit">Simpan</button>
-        </form>
-        </section>
+        <!-- Nominal: angka -->
+        <label for="nominal">Nominal (Rp)</label>
+        <input type="number" id="nominal" placeholder="contoh: 25000">
 
-                <!-- ===== W2: DAFTAR TRANSAKSI ===== -->
-        <section id="bagian-daftar">
-            <h2>Daftar Transaksi</h2>
+        <!-- Catatan: boleh dikosongkan -->
+        <label for="catatan">Catatan (opsional)</label>
+        <input type="text" id="catatan" placeholder="contoh: beli sayur">
 
-            <!-- Pesan ini tampil kalau belum ada transaksi -->
-            <p id="pesan-kosong">Belum ada transaksi.</p>
+        <!-- W6: pesan error tampil di sini -->
+        <p id="pesan-error" class="error"></p>
 
-            <!-- Isi <ul> ini sengaja kosong, nanti diisi oleh JavaScript -->
-            <ul id="daftar-transaksi"></ul>
-        </section>
+        <button type="submit" id="tombol-simpan">Simpan</button>
+        <!-- Tombol Batal hanya muncul saat mengedit transaksi -->
+        <button type="button" id="tombol-batal" class="tombol-batal" hidden>Batal</button>
+      </form>
+    </section>
 
+    <!-- ===== W2 + W3: DAFTAR TRANSAKSI ===== -->
+    <section id="bagian-daftar">
+      <h2>Daftar Transaksi</h2>
 
-    </main>
+      <!-- BONUS filter dan pencarian -->
+      <div class="filter">
+        <select id="filter-jenis">
+          <option value="semua">Semua jenis</option>
+          <option value="pemasukan">Pemasukan</option>
+          <option value="pengeluaran">Pengeluaran</option>
+        </select>
+        <select id="filter-kategori">
+          <option value="semua">Semua kategori</option>
+          <option value="Belanja Dapur">Belanja Dapur</option>
+          <option value="Listrik & Air">Listrik &amp; Air</option>
+          <option value="Transport">Transport</option>
+          <option value="Sekolah Anak">Sekolah Anak</option>
+          <option value="Lainnya">Lainnya</option>
+          <option value="Uang Belanja">Uang Belanja</option>
+        </select>
+        <input type="text" id="cari" placeholder="Cari catatan...">
+      </div>
 
-    <footer>
-        <p>ETS Pemrograman Web - Persona: Ibu Rumah Tangga</p>
-    </footer>
+      <!-- Pesan kalau belum ada transaksi atau tidak ada yang cocok -->
+      <p id="pesan-kosong">Belum ada transaksi.</p>
 
-    <!-- Hubungkan ke file JavaScript. Ditaruh paling bawah supaya elemen HTML sudah ada saat JS jalan --
-    <script src="script.js"></script>
+      <!-- Isi <ul> ini sengaja kosong, diisi oleh JavaScript -->
+      <ul id="daftar-transaksi"></ul>
+
+      <!-- BONUS backup: ekspor dan impor JSON -->
+      <div class="backup">
+        <button type="button" id="tombol-ekspor">Ekspor JSON</button>
+        <label for="input-impor" class="tombol-impor">Impor JSON</label>
+        <input type="file" id="input-impor" accept=".json" hidden>
+      </div>
+      <p id="pesan-backup" class="pesan"></p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>ETS Pemrograman Web - Persona: Ibu Rumah Tangga</p>
+  </footer>
+
+  <!-- Hubungkan ke file JavaScript. Ditaruh paling bawah supaya elemen HTML sudah ada saat JS jalan -->
+  <script src="script.js"></script>
 </body>
 </html>

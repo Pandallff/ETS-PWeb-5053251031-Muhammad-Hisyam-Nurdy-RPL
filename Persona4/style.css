@@ -458,3 +458,182 @@ footer p {
     gap: 2px;
   }
 }
+
+
+/* ---------- 15. Desktop: semua fitur muat dalam satu layar, tanpa scroll halaman ---------- */
+/* Hanya aktif di layar lebar DAN cukup tinggi. Di HP dan tablet tampilan tetap satu kolom. */
+@media (min-width: 1024px) and (min-height: 640px) {
+
+  html {
+    font-size: 16px; /* sedikit lebih kecil dari mode HP supaya semuanya muat */
+  }
+
+  /* Halaman setinggi layar: header di atas, isi di tengah, footer di bawah */
+  body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Header dibuat ramping */
+  header {
+    justify-content: flex-start;
+    padding: 10px 32px;
+    border-radius: 0 0 20px 20px;
+    flex-shrink: 0;
+  }
+
+  header h1 {
+    font-size: 1.25rem;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
+
+  /* Isi halaman dibagi jadi kolom (grid): ringkasan di baris atas, sisanya di baris bawah */
+  main {
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    max-width: 1280px;
+    padding: 16px 32px;
+    display: grid;
+    grid-template-columns: 380px 1fr;          /* kolom 1: form, kolom 2: daftar */
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  /* Kalau nanti ada bagian amplop: form | amplop | daftar */
+  main:has(#bagian-amplop) {
+    grid-template-columns: 360px 1fr 1fr;
+  }
+
+  main > section {
+    min-height: 0;
+    padding: 16px 20px;
+  }
+
+  main h2 {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+  }
+
+  /* --- Ringkasan: tiga kotak berjajar satu baris di atas --- */
+  #ringkasan {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  #ringkasan h2 {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  #ringkasan > p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    margin: 0;
+    padding: 10px 16px;
+  }
+
+  /* --- Form: label di kiri, isian di kanan, supaya lebih pendek --- */
+  #bagian-form {
+    grid-column: 1;
+    grid-row: 2;
+    overflow-y: auto;
+  }
+
+  #bagian-form form {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    gap: 10px 12px;
+    align-items: center;
+  }
+
+  #bagian-form label {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+
+  #bagian-form input,
+  #bagian-form select {
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+
+  /* Pesan error dan tombol Simpan selebar form */
+  #bagian-form .error {
+    grid-column: 1 / -1;
+    margin: 0;
+  }
+
+  #bagian-form form button {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-height: 48px;
+    margin-top: 4px;
+  }
+
+  /* --- Amplop (muncul kalau section amplop sudah dibuat) --- */
+  #bagian-amplop {
+    grid-column: 2;
+    grid-row: 2;
+    overflow-y: auto;
+  }
+
+  #daftar-amplop {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .amplop {
+    padding: 10px 14px;
+  }
+
+  /* --- Daftar transaksi: kotaknya tetap, hanya isi daftarnya yang bisa digulir --- */
+  #bagian-daftar {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  main:has(#bagian-amplop) #bagian-daftar {
+    grid-column: 3;
+  }
+
+  #daftar-transaksi {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding-right: 6px;
+    gap: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--hijau-sage) transparent;
+  }
+
+  #daftar-transaksi li {
+    padding: 10px 12px 10px 14px;
+  }
+
+  #daftar-transaksi li button {
+    min-height: 40px;
+  }
+
+  #pesan-kosong {
+    padding: 24px 12px;
+  }
+
+  /* --- Footer ramping --- */
+  footer {
+    flex-shrink: 0;
+    padding: 6px 16px 10px;
+  }
+}

@@ -219,7 +219,7 @@ function tambahTransaksi(event) {
 // Saat form di-submit, jalankan tambahTransaksi
 formTransaksi.addEventListener("submit", tambahTransaksi);
 
-// Saat halaman dibuka: baca data dulu, baru tampilkan
+// Saat halaman dibuka: baca data dulu, baru tampilka
 muatData();
 renderDaftar();
 hitungRingkasan();

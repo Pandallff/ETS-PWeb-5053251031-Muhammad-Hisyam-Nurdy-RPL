@@ -47,3 +47,15 @@ Diubah: saya tempel section Ringkasan ke index.html. Di renderDaftar() saya tamb
 Prompt: "tambahkan fitur W6, yaitu validasi form: nominal harus lebih dari 0 dan field wajib terisi; pesan error tampil di halaman, tidak cukup hanya alert()"
 Dipakai: elemen p untuk pesan error di dalam form, variabel elemenPesanError di script.js, fungsi validasiForm(), dan versi baru tambahTransaksi() yang membaca isian form ke variabel, memvalidasinya dulu, baru membuat objek transaksi kalau lolos.
 Diubah: tambahTransaksi() versi sebelumnya saya ganti dengan versi baru.
+
+11. membuat css agar mudah digunakan oleh Ibu Rumah tangga
+
+prompt : Tolong buatkan kode CSS lengkap untuk struktur HTML aplikasi pengatur keuangan yang saya lampirkan di bawah. Desain ini ditargetkan khusus untuk ibu rumah tangga, sehingga tampilannya harus memenuhi kriteria berikut:
+
+Warna Tema: Gunakan palet "hijau kalem" (seperti sage green, mint, atau soft olive) dan putih/krem sebagai warna latar. Warna ini harus memberikan kesan sejuk, tenang, dan tidak bikin pusing saat mengelola uang.
+Kemudahan Penggunaan (User-Friendly): Tata letaknya harus sangat intuitif dan tidak ribet. Gunakan tombol (button) yang ukurannya besar (mudah di-tap jari di HP), form input yang batasnya jelas, serta sudut elemen yang membulat (rounded corners) agar terasa ramah.
+Tipografi & Spasi: Gunakan font sans-serif yang bersih (seperti Inter atau Roboto) dengan ukuran huruf sedikit lebih besar agar nyaman dibaca. Berikan jarak antar elemen (whitespace) yang cukup agar layar tidak terlihat sumpek dengan angka.
+Mobile-Responsive: Pastikan desain ini 100% responsif dan sangat rapi saat dibuka melalui layar smartphone (tampilan vertikal), karena target pengguna mayoritas mengakses dari HP.
+Aksen Visual: Berikan penanda warna yang lembut namun jelas untuk Pemasukan (misalnya hijau sedikit lebih terang) dan Pengeluaran (merah bata kalem/coral) agar mudah dibedakan secara cepat.
+
+hasil : file.css
